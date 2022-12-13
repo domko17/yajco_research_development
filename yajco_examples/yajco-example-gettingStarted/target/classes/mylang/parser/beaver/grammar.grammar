@@ -1,0 +1,17 @@
+%package "mylang.parser.beaver";
+%class "LALRSimpleIdentifierParser";
+%import "mylang.parser.beaver.SymbolListImpl";
+%import "mylang.parser.beaver.SymbolWrapper";
+
+%terminals ident, SYMBOLID;
+
+%typeof ident = "java.lang.String";
+%typeof SimpleIdentifier = "mylang.parser.beaver.SymbolWrapper<mylang.SimpleIdentifier>";
+
+%goal SimpleIdentifier;
+
+SimpleIdentifier
+	= SYMBOLID ident.ident	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new mylang.SimpleIdentifier(ident), (Object)ident)); :}
+	| SYMBOLID ident.ident	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new mylang.SimpleIdentifier(ident), (Object)ident)); :}
+	;
+

@@ -1,0 +1,43 @@
+language yajco.example.desk.model
+
+tokens
+   NAME = "[a-zA-Z]+"
+   VALUE = "[0-9]+"
+
+skips
+   "[ ]"
+   "[\t]"
+   "[\n]"
+   "[\r]"
+
+concept Program
+    AS: expression : Expression, constants : array of Constant
+    CS: "print" expression 
+      | "print" expression "where" constants {Range(1..*) Separator(",")} 
+
+concept Expression {Parentheses}
+
+concept Add : Expression {Operator(priority = 1)}
+    AS: expression1 : Expression, expression2 : Expression
+    CS: expression1 "+" expression2 
+
+concept Factor : Expression
+
+concept Number : Factor
+    AS: value : int
+    CS: value 
+
+concept ConstUsage : Factor
+    AS: constant : Constant
+    CS: name : string {References(Constant, property = constant)} 
+
+concept Constant
+    AS: name : string {Identifier}, number : Number
+    CS: name "=" number 
+
+settings
+   yajco.mainNode = "Program"
+   yajco.generator.classgen.ClassGenerator = "false"
+   yajco.className = "yajco.example.desk.parser.DeskParser"
+   yajco.generateTools = "all"
+

@@ -1,0 +1,243 @@
+%package "yajco.robot.karel.parser.beaver";
+%class "Parser";
+%import "yajco.robot.karel.parser.beaver.SymbolListImpl";
+%import "yajco.robot.karel.parser.beaver.SymbolWrapper";
+
+%terminals SYMBOLLEFT_45_IS_45_BLOCKED, SYMBOLWHILE, SYMBOLEND_45_OF_45_EXECUTION, SYMBOLBACK_45_IS_45_BLOCKED, SYMBOLTIMES, SYMBOLNO_45_BEEPERS_45_IN_45_BEEPER_45_BAG, SYMBOLFACING_45_SOUTH, SYMBOLNOT_45_FACING_45_SOUTH, SYMBOLFRONT_45_IS_45_CLEAR, SYMBOLNOT_45_NEXT_45_TO_45_A_45_BEEPER, SYMBOLBEGINNING_45_OF_45_EXECUTION, SYMBOLFACING_45_WEST, SYMBOLNOT_45_FACING_45_NORTH, VALUE, SYMBOLANY_45_BEEPERS_45_IN_45_BEEPER_45_BAG, SYMBOLFACING_45_NORTH, SYMBOLIF, SYMBOLFACING_45_EAST, SYMBOLEND_45_OF_45_PROGRAM, SYMBOLBEGINNING_45_OF_45_PROGRAM, SYMBOLTURNLEFT, SYMBOLDO, SYMBOLITERATE, SYMBOLLEFT_45_IS_45_CLEAR, SYMBOLRIGHT_45_IS_45_CLEAR, SYMBOLELSE, SYMBOLTHEN, SYMBOLBEGIN, SYMBOLPUTBEEPER, SYMBOLNOT_45_FACING_45_EAST, SYMBOLBACK_45_IS_45_CLEAR, SYMBOLDEFINE, SYMBOLAS, IDENT, SYMBOLFRONT_45_IS_45_BLOCKED, SYMBOLEND, SYMBOLTURNOFF, SYMBOLPICKBEEPER, SYMBOLMOVE, SYMBOLNEXT_45_TO_45_A_45_BEEPER, SYMBOLNOT_45_FACING_45_WEST, SYMBOLRIGHT_45_IS_45_BLOCKED;
+
+%typeof VALUE = "java.lang.String";
+%typeof IDENT = "java.lang.String";
+%typeof TurnOff = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.instruction.TurnOff>";
+%typeof Facing = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.facing.Facing>";
+%typeof NotFacingSouth = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.facing.NotFacingSouth>";
+%typeof Obstacle = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.obstacle.Obstacle>";
+%typeof PickBeeper = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.instruction.PickBeeper>";
+%typeof Move = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.instruction.Move>";
+%typeof LeftIsBlocked = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.obstacle.LeftIsBlocked>";
+%typeof RightIsBlocked = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.obstacle.RightIsBlocked>";
+%typeof PutBeeper = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.instruction.PutBeeper>";
+%typeof NotNextToABeeper = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.beeper.NotNextToABeeper>";
+%typeof StatementArray3 = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.parser.beaver.SymbolListImpl<yajco.robot.karel.model.Statement>>";
+%typeof StatementArray2 = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.parser.beaver.SymbolListImpl<yajco.robot.karel.model.Statement>>";
+%typeof Conditional = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.statement.Conditional>";
+%typeof Instruction = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.Instruction>";
+%typeof Condition = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.Condition>";
+%typeof FrontIsClear = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.obstacle.FrontIsClear>";
+%typeof Definition = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.Definition>";
+%typeof BackIsClear = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.obstacle.BackIsClear>";
+%typeof AnyBeepersInBeeperBag = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.beeper.AnyBeepersInBeeperBag>";
+%typeof NoBeepersInBeeperBag = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.beeper.NoBeepersInBeeperBag>";
+%typeof TurnLeft = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.instruction.TurnLeft>";
+%typeof FacingNorth = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.facing.FacingNorth>";
+%typeof LeftIsClear = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.obstacle.LeftIsClear>";
+%typeof FacingWest = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.facing.FacingWest>";
+%typeof FrontIsBlocked = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.obstacle.FrontIsBlocked>";
+%typeof RightIsClear = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.obstacle.RightIsClear>";
+%typeof NotFacingNorth = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.facing.NotFacingNorth>";
+%typeof FacingEast = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.facing.FacingEast>";
+%typeof Iteration = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.statement.Iteration>";
+%typeof BackIsBlocked = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.obstacle.BackIsBlocked>";
+%typeof Statement = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.Statement>";
+%typeof NotFacingWest = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.facing.NotFacingWest>";
+%typeof Call = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.instruction.Call>";
+%typeof FacingSouth = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.facing.FacingSouth>";
+%typeof DefinitionArray1 = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.parser.beaver.SymbolListImpl<yajco.robot.karel.model.Definition>>";
+%typeof Program = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.Program>";
+%typeof NotFacingEast = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.facing.NotFacingEast>";
+%typeof Loop = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.statement.Loop>";
+%typeof NextToABeeper = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.condition.beeper.NextToABeeper>";
+%typeof Block = "yajco.robot.karel.parser.beaver.SymbolWrapper<yajco.robot.karel.model.statement.Block>";
+
+%goal Program;
+
+Call
+	= IDENT.ident	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.instruction.Call(ident), (Object)ident)); :}
+	;
+
+FrontIsBlocked
+	= SYMBOLFRONT_45_IS_45_BLOCKED	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.obstacle.FrontIsBlocked())); :}
+	;
+
+Definition
+	= SYMBOLDEFINE IDENT.ident SYMBOLAS StatementArray2.statements	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.Definition(ident, statements.getWrappedObject().toArray(new yajco.robot.karel.model.Statement[]{})), (Object)ident, statements.getWrappedObject().toArray(new yajco.robot.karel.model.Statement[]{}))); :}
+	;
+
+LeftIsClear
+	= SYMBOLLEFT_45_IS_45_CLEAR	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.obstacle.LeftIsClear())); :}
+	;
+
+Move
+	= SYMBOLMOVE	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.instruction.Move())); :}
+	;
+
+Block
+	= SYMBOLBEGIN StatementArray3.statements SYMBOLEND	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.statement.Block(statements.getWrappedObject().toArray(new yajco.robot.karel.model.Statement[]{})), (Object)statements.getWrappedObject().toArray(new yajco.robot.karel.model.Statement[]{}))); :}
+	;
+
+RightIsClear
+	= SYMBOLRIGHT_45_IS_45_CLEAR	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.obstacle.RightIsClear())); :}
+	;
+
+NotFacingWest
+	= SYMBOLNOT_45_FACING_45_WEST	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.facing.NotFacingWest())); :}
+	;
+
+Statement
+	= Block.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Loop.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Iteration.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Instruction.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Conditional.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	;
+
+LeftIsBlocked
+	= SYMBOLLEFT_45_IS_45_BLOCKED	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.obstacle.LeftIsBlocked())); :}
+	;
+
+NotNextToABeeper
+	= SYMBOLNOT_45_NEXT_45_TO_45_A_45_BEEPER	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.beeper.NotNextToABeeper())); :}
+	;
+
+StatementArray3
+	= StatementArray3.list Statement.elem	{: list.getWrappedObject().add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list.getWrappedObject()); :}
+	| 	{: return (Symbol) new SymbolWrapper(new SymbolListImpl<yajco.robot.karel.model.Statement>()); :}
+	;
+
+NotFacingSouth
+	= SYMBOLNOT_45_FACING_45_SOUTH	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.facing.NotFacingSouth())); :}
+	;
+
+FrontIsClear
+	= SYMBOLFRONT_45_IS_45_CLEAR	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.obstacle.FrontIsClear())); :}
+	;
+
+NoBeepersInBeeperBag
+	= SYMBOLNO_45_BEEPERS_45_IN_45_BEEPER_45_BAG	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.beeper.NoBeepersInBeeperBag())); :}
+	;
+
+Condition
+	= NextToABeeper.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Obstacle.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| AnyBeepersInBeeperBag.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Facing.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| NoBeepersInBeeperBag.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| NotNextToABeeper.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	;
+
+Conditional
+	= SYMBOLIF Condition.condition SYMBOLTHEN Statement.statement SYMBOLELSE Statement.elseStatement	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.statement.Conditional(condition.getWrappedObject(), statement.getWrappedObject(), elseStatement.getWrappedObject()), (Object)condition.getWrappedObject(), statement.getWrappedObject(), elseStatement.getWrappedObject())); :}
+	;
+
+BackIsClear
+	= SYMBOLBACK_45_IS_45_CLEAR	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.obstacle.BackIsClear())); :}
+	;
+
+NotFacingNorth
+	= SYMBOLNOT_45_FACING_45_NORTH	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.facing.NotFacingNorth())); :}
+	;
+
+NotFacingEast
+	= SYMBOLNOT_45_FACING_45_EAST	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.facing.NotFacingEast())); :}
+	;
+
+Program
+	= SYMBOLBEGINNING_45_OF_45_PROGRAM DefinitionArray1.definitions SYMBOLBEGINNING_45_OF_45_EXECUTION StatementArray2.statements SYMBOLEND_45_OF_45_EXECUTION SYMBOLEND_45_OF_45_PROGRAM	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.Program(definitions.getWrappedObject().toArray(new yajco.robot.karel.model.Definition[]{}), statements.getWrappedObject().toArray(new yajco.robot.karel.model.Statement[]{})), (Object)definitions.getWrappedObject().toArray(new yajco.robot.karel.model.Definition[]{}), statements.getWrappedObject().toArray(new yajco.robot.karel.model.Statement[]{}))); :}
+	;
+
+NextToABeeper
+	= SYMBOLNEXT_45_TO_45_A_45_BEEPER	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.beeper.NextToABeeper())); :}
+	;
+
+BackIsBlocked
+	= SYMBOLBACK_45_IS_45_BLOCKED	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.obstacle.BackIsBlocked())); :}
+	;
+
+StatementArray2
+	= StatementArray2.list Statement.elem	{: list.getWrappedObject().add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list.getWrappedObject()); :}
+	| Statement.elem	{: java.util.List<yajco.robot.karel.model.Statement> list = null; list = new SymbolListImpl<yajco.robot.karel.model.Statement>(); list.add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list); :}
+	;
+
+Loop
+	= SYMBOLWHILE Condition.condition SYMBOLDO Statement.statement	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.statement.Loop(condition.getWrappedObject(), statement.getWrappedObject()), (Object)condition.getWrappedObject(), statement.getWrappedObject())); :}
+	;
+
+AnyBeepersInBeeperBag
+	= SYMBOLANY_45_BEEPERS_45_IN_45_BEEPER_45_BAG	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.beeper.AnyBeepersInBeeperBag())); :}
+	;
+
+FacingWest
+	= SYMBOLFACING_45_WEST	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.facing.FacingWest())); :}
+	;
+
+PickBeeper
+	= SYMBOLPICKBEEPER	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.instruction.PickBeeper())); :}
+	;
+
+FacingSouth
+	= SYMBOLFACING_45_SOUTH	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.facing.FacingSouth())); :}
+	;
+
+PutBeeper
+	= SYMBOLPUTBEEPER	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.instruction.PutBeeper())); :}
+	;
+
+TurnLeft
+	= SYMBOLTURNLEFT	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.instruction.TurnLeft())); :}
+	;
+
+TurnOff
+	= SYMBOLTURNOFF	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.instruction.TurnOff())); :}
+	;
+
+DefinitionArray1
+	= DefinitionArray1.list Definition.elem	{: list.getWrappedObject().add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list.getWrappedObject()); :}
+	| 	{: return (Symbol) new SymbolWrapper(new SymbolListImpl<yajco.robot.karel.model.Definition>()); :}
+	;
+
+Obstacle
+	= BackIsBlocked.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| FrontIsBlocked.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| RightIsClear.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| BackIsClear.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| FrontIsClear.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| LeftIsBlocked.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| RightIsBlocked.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| LeftIsClear.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	;
+
+Facing
+	= NotFacingEast.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| NotFacingNorth.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| FacingSouth.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| FacingNorth.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| NotFacingWest.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| FacingEast.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| NotFacingSouth.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| FacingWest.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	;
+
+FacingNorth
+	= SYMBOLFACING_45_NORTH	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.facing.FacingNorth())); :}
+	;
+
+FacingEast
+	= SYMBOLFACING_45_EAST	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.facing.FacingEast())); :}
+	;
+
+Iteration
+	= SYMBOLITERATE VALUE.value SYMBOLTIMES Statement.statement	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.statement.Iteration(java.lang.Integer.valueOf(value), statement.getWrappedObject()), (Object)java.lang.Integer.valueOf(value), statement.getWrappedObject())); :}
+	;
+
+RightIsBlocked
+	= SYMBOLRIGHT_45_IS_45_BLOCKED	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.karel.model.condition.obstacle.RightIsBlocked())); :}
+	;
+
+Instruction
+	= PickBeeper.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| TurnLeft.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Call.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Move.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| TurnOff.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| PutBeeper.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	;
+

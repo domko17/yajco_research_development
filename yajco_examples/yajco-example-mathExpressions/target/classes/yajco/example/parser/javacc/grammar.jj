@@ -1,0 +1,122 @@
+options {
+  USER_TOKEN_MANAGER = true;
+}
+
+PARSER_BEGIN(ExpressionParser)
+package yajco.example.parser.javacc;
+
+public class ExpressionParser {}
+
+PARSER_END(ExpressionParser)
+
+yajco.example.expression.model.Expression parse() :
+{
+  yajco.example.expression.model.Expression _value;
+}
+{
+  _value = Expression1Symbol() <EOF>
+  {return _value;}
+}
+
+yajco.example.expression.model.Expression ExpressionSymbol() :
+{
+  yajco.example.expression.model.Expression _value = null;
+}
+{
+(LOOKAHEAD(  NumberSymbol())    _value = NumberSymbol()
+   |
+LOOKAHEAD((    <_40>
+    Expression1Symbol()
+    <_41>
+))(      <_40>
+      _value = Expression1Symbol()
+      <_41>
+)
+
+)  {return _value;}
+}
+
+yajco.example.expression.model.Expression Expression1Symbol() :
+{
+  yajco.example.expression.model.Expression _node1 = null;
+  yajco.example.expression.model.Expression _node2 = null;
+}
+{
+(    _node1 = Expression2Symbol()
+    ( LOOKAHEAD(((      <PLUS>
+      Expression2Symbol()
+)
+   |
+(      <MINUS>
+      Expression2Symbol()
+)
+)) 
+(LOOKAHEAD((    <PLUS>
+    Expression2Symbol()
+))(          <PLUS>
+          _node2 = Expression2Symbol()
+)  {_node1 = yajco.ReferenceResolver.getInstance().register(new yajco.example.expression.model.Add(_node1, _node2), (Object)_node1, _node2);}
+
+       |
+LOOKAHEAD((    <MINUS>
+    Expression2Symbol()
+))(          <MINUS>
+          _node2 = Expression2Symbol()
+)  {_node1 = yajco.ReferenceResolver.getInstance().register(new yajco.example.expression.model.Sub(_node1, _node2), (Object)_node1, _node2);}
+
+)
+)*
+    
+
+)  {return _node1;}
+}
+
+yajco.example.expression.model.Expression Expression2Symbol() :
+{
+  yajco.example.expression.model.Expression _node1 = null;
+  yajco.example.expression.model.Expression _node2 = null;
+}
+{
+(    _node1 = ExpressionSymbol()
+    ( LOOKAHEAD(((      <SLASH>
+      ExpressionSymbol()
+)
+   |
+(      <STAR>
+      ExpressionSymbol()
+)
+)) 
+(LOOKAHEAD((    <SLASH>
+    ExpressionSymbol()
+))(          <SLASH>
+          _node2 = ExpressionSymbol()
+)  {_node1 = yajco.ReferenceResolver.getInstance().register(new yajco.example.expression.model.Div(_node1, _node2), (Object)_node1, _node2);}
+
+       |
+LOOKAHEAD((    <STAR>
+    ExpressionSymbol()
+))(          <STAR>
+          _node2 = ExpressionSymbol()
+)  {_node1 = yajco.ReferenceResolver.getInstance().register(new yajco.example.expression.model.Mul(_node1, _node2), (Object)_node1, _node2);}
+
+)
+)*
+    
+
+)  {return _node1;}
+}
+
+yajco.example.expression.model.Number NumberSymbol() :
+{
+  int value_1 = 0;
+  Token _tokenvalue_1 = null;
+}
+{
+(((        _tokenvalue_1 = <VALUE>  {value_1 = Integer.parseInt(_tokenvalue_1.image);}
+)
+
+)  {return yajco.ReferenceResolver.getInstance().register(new yajco.example.expression.model.Number( value_1), (Object)value_1);}
+
+)
+}
+

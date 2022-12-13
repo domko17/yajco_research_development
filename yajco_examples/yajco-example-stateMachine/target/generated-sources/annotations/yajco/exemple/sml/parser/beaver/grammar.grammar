@@ -1,0 +1,38 @@
+%package "yajco.exemple.sml.parser.beaver";
+%class "StateMachineParser";
+%import "yajco.exemple.sml.parser.beaver.SymbolListImpl";
+%import "yajco.exemple.sml.parser.beaver.SymbolWrapper";
+
+%terminals SYMBOLTRANS, SYMBOL_45__62, ID, SYMBOL_59, SYMBOLSTATE, SYMBOL_58;
+
+%typeof ID = "java.lang.String";
+%typeof DeclarationArray1 = "yajco.exemple.sml.parser.beaver.SymbolWrapper<yajco.exemple.sml.parser.beaver.SymbolListImpl<yajco.example.sml.model.Declaration>>";
+%typeof StateMachine = "yajco.exemple.sml.parser.beaver.SymbolWrapper<yajco.example.sml.model.StateMachine>";
+%typeof Declaration = "yajco.exemple.sml.parser.beaver.SymbolWrapper<yajco.example.sml.model.Declaration>";
+%typeof State = "yajco.exemple.sml.parser.beaver.SymbolWrapper<yajco.example.sml.model.State>";
+%typeof Transition = "yajco.exemple.sml.parser.beaver.SymbolWrapper<yajco.example.sml.model.Transition>";
+
+%goal StateMachine;
+
+State
+	= SYMBOLSTATE ID.id SYMBOL_59	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.sml.model.State(id), (Object)id)); :}
+	;
+
+Declaration
+	= State.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Transition.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	;
+
+Transition
+	= SYMBOLTRANS ID.label SYMBOL_58 ID.sourceLabel SYMBOL_45__62 ID.targetLabel SYMBOL_59	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.sml.model.Transition(label, sourceLabel, targetLabel), (Object)label, sourceLabel, targetLabel)); :}
+	;
+
+StateMachine
+	= DeclarationArray1.declarations	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.sml.model.StateMachine(declarations.getWrappedObject().toArray(new yajco.example.sml.model.Declaration[]{})), (Object)declarations.getWrappedObject().toArray(new yajco.example.sml.model.Declaration[]{}))); :}
+	;
+
+DeclarationArray1
+	= DeclarationArray1.list Declaration.elem	{: list.getWrappedObject().add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list.getWrappedObject()); :}
+	| 	{: return (Symbol) new SymbolWrapper(new SymbolListImpl<yajco.example.sml.model.Declaration>()); :}
+	;
+

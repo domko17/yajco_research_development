@@ -1,0 +1,57 @@
+%package "yajco.example.extMathExpr.parser.beaver";
+%class "ExpressionParser";
+%import "yajco.example.extMathExpr.parser.beaver.SymbolListImpl";
+%import "yajco.example.extMathExpr.parser.beaver.SymbolWrapper";
+
+%terminals SYMBOL_41, PERC, STAR, SYMBOL_40, SLASH, POWER, COLON, VALUE, EXCL, QUESTION, MINUS, PLUS;
+
+%left SYMBOL_40, SYMBOL_41, QUESTION, COLON;
+%left EXCL;
+%left PREC_3_1, PREC_3_2;
+%left POWER, PERC, STAR, SLASH;
+%left MINUS, PLUS;
+
+%typeof PERC = "java.lang.String";
+%typeof STAR = "java.lang.String";
+%typeof SLASH = "java.lang.String";
+%typeof POWER = "java.lang.String";
+%typeof COLON = "java.lang.String";
+%typeof VALUE = "java.lang.String";
+%typeof EXCL = "java.lang.String";
+%typeof QUESTION = "java.lang.String";
+%typeof MINUS = "java.lang.String";
+%typeof PLUS = "java.lang.String";
+%typeof BinaryOperation = "yajco.example.extMathExpr.parser.beaver.SymbolWrapper<yajco.example.extMathExpr.model.BinaryOperation>";
+%typeof Number = "yajco.example.extMathExpr.parser.beaver.SymbolWrapper<yajco.example.extMathExpr.model.Number>";
+%typeof Expression = "yajco.example.extMathExpr.parser.beaver.SymbolWrapper<yajco.example.extMathExpr.model.Expression>";
+%typeof UnaryOperation = "yajco.example.extMathExpr.parser.beaver.SymbolWrapper<yajco.example.extMathExpr.model.UnaryOperation>";
+
+%goal Expression;
+
+Expression
+	= SYMBOL_40 Expression.val SYMBOL_41	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| BinaryOperation.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| UnaryOperation.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Number.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Expression.expression1 QUESTION Expression.expression2 COLON Expression.expression3	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.extMathExpr.model.Conditional(expression1.getWrappedObject(), expression2.getWrappedObject(), expression3.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject(), expression3.getWrappedObject())); :}
+	;
+
+Number
+	= VALUE.value	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.extMathExpr.model.Number(java.lang.Integer.valueOf(value)), (Object)java.lang.Integer.valueOf(value))); :}
+	;
+
+UnaryOperation
+	= MINUS Expression.expression @ PREC_3_1	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.extMathExpr.model.UnaryMinus(expression.getWrappedObject()), (Object)expression.getWrappedObject())); :}
+	| Expression.expression EXCL	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.extMathExpr.model.Factorial(expression.getWrappedObject()), (Object)expression.getWrappedObject())); :}
+	| PLUS Expression.expression @ PREC_3_2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.extMathExpr.model.UnaryPlus(expression.getWrappedObject()), (Object)expression.getWrappedObject())); :}
+	;
+
+BinaryOperation
+	= Expression.expression1 POWER Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.extMathExpr.model.Power(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 MINUS Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.extMathExpr.model.Sub(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 PERC Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.extMathExpr.model.Mod(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 STAR Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.extMathExpr.model.Mul(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 SLASH Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.extMathExpr.model.Div(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 PLUS Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.extMathExpr.model.Add(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	;
+

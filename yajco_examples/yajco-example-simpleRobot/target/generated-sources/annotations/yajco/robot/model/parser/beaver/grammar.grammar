@@ -1,0 +1,37 @@
+%package "yajco.robot.model.parser.beaver";
+%class "Parser";
+%import "yajco.robot.model.parser.beaver.SymbolListImpl";
+%import "yajco.robot.model.parser.beaver.SymbolWrapper";
+
+%terminals SYMBOLBEGIN, SYMBOLEND, SYMBOLMOVE, SYMBOLturn_45_left;
+
+%typeof CommandArray1 = "yajco.robot.model.parser.beaver.SymbolWrapper<yajco.robot.model.parser.beaver.SymbolListImpl<yajco.robot.model.Command>>";
+%typeof Robot = "yajco.robot.model.parser.beaver.SymbolWrapper<yajco.robot.model.Robot>";
+%typeof TurnLeft = "yajco.robot.model.parser.beaver.SymbolWrapper<yajco.robot.model.TurnLeft>";
+%typeof Command = "yajco.robot.model.parser.beaver.SymbolWrapper<yajco.robot.model.Command>";
+%typeof Move = "yajco.robot.model.parser.beaver.SymbolWrapper<yajco.robot.model.Move>";
+
+%goal Robot;
+
+Move
+	= SYMBOLMOVE	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.model.Move())); :}
+	;
+
+Command
+	= TurnLeft.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Move.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	;
+
+CommandArray1
+	= CommandArray1.list Command.elem	{: list.getWrappedObject().add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list.getWrappedObject()); :}
+	| 	{: return (Symbol) new SymbolWrapper(new SymbolListImpl<yajco.robot.model.Command>()); :}
+	;
+
+Robot
+	= SYMBOLBEGIN CommandArray1.commands SYMBOLEND	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.model.Robot(new java.util.ArrayList<yajco.robot.model.Command>(commands.getWrappedObject())), (Object)new java.util.ArrayList<yajco.robot.model.Command>(commands.getWrappedObject()))); :}
+	;
+
+TurnLeft
+	= SYMBOLturn_45_left	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.robot.model.TurnLeft())); :}
+	;
+

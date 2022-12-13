@@ -1,0 +1,86 @@
+<yajco.model.Language>
+  <name>yajco.robot.model</name>
+  <concepts>
+    <yajco.model.Concept>
+      <name>Robot</name>
+      <abstractSyntax>
+        <yajco.model.Property>
+          <name>commands</name>
+          <type class="yajco.model.type.ListType">
+            <componentType class="yajco.model.type.ReferenceType">
+              <concept>
+                <name>Command</name>
+                <abstractSyntax/>
+                <concreteSyntax/>
+                <patterns/>
+              </concept>
+            </componentType>
+          </type>
+          <patterns/>
+        </yajco.model.Property>
+      </abstractSyntax>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>begin</token>
+            </yajco.model.TokenPart>
+            <yajco.model.PropertyReferencePart>
+              <property reference="../../../../../abstractSyntax/yajco.model.Property"/>
+              <patterns/>
+            </yajco.model.PropertyReferencePart>
+            <yajco.model.TokenPart>
+              <token>end</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept reference="../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept"/>
+    <yajco.model.Concept>
+      <name>TurnLeft</name>
+      <parent reference="../../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>turn-left</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>Move</name>
+      <parent reference="../../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>move</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+  </concepts>
+  <tokens/>
+  <skips>
+    <yajco.model.SkipDef>
+      <regexp>\s</regexp>
+    </yajco.model.SkipDef>
+  </skips>
+  <settings>
+    <property name="yajco.mainNode" value="yajco.robot.model.Robot"/>
+    <property name="yajco.generator.classgen.ClassGenerator" value="false"/>
+    <property name="yajco.className" value="yajco.robot.model.parser.Parser"/>
+  </settings>
+</yajco.model.Language>

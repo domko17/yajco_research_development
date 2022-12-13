@@ -1,0 +1,224 @@
+%package "yajco.example.imperative.parser.beaver";
+%class "Parser";
+%import "yajco.example.imperative.parser.beaver.SymbolListImpl";
+%import "yajco.example.imperative.parser.beaver.SymbolWrapper";
+
+%terminals PERC, ASSIGNDIV, LT, RPAR, VALUE, DO, ASSIGN, PLUSPLUS, QUESTION, MINUS, WRITE, RETURN, LPAR, SEMICOLON, ASSIGNADD, ELSE, LBR, IF, COMMA, RBR, OR, SLASH, MINUSMINUS, COLON, EQ, GT, READ, ASSIGNMUL, STAR, IDENT, ASSIGNSUB, ASSIGNMOD, AND, GTE, WHILE, NEQ, EXCL, LTE, PLUS;
+
+%left LPAR, RPAR;
+%nonassoc PLUSPLUS, MINUSMINUS;
+%left PREC_13_1, EXCL, PREC_13_2;
+%left STAR, SLASH, PERC;
+%left PLUS, MINUS;
+%left LT, GT, GTE, LTE;
+%left EQ, NEQ;
+%left AND;
+%left OR;
+%left QUESTION, COLON;
+%right ASSIGN, ASSIGNMOD, ASSIGNDIV, ASSIGNMUL, ASSIGNSUB, ASSIGNADD;
+
+%typeof PERC = "java.lang.String";
+%typeof ASSIGNDIV = "java.lang.String";
+%typeof LT = "java.lang.String";
+%typeof RPAR = "java.lang.String";
+%typeof VALUE = "java.lang.String";
+%typeof DO = "java.lang.String";
+%typeof ASSIGN = "java.lang.String";
+%typeof PLUSPLUS = "java.lang.String";
+%typeof QUESTION = "java.lang.String";
+%typeof MINUS = "java.lang.String";
+%typeof WRITE = "java.lang.String";
+%typeof RETURN = "java.lang.String";
+%typeof LPAR = "java.lang.String";
+%typeof SEMICOLON = "java.lang.String";
+%typeof ASSIGNADD = "java.lang.String";
+%typeof ELSE = "java.lang.String";
+%typeof LBR = "java.lang.String";
+%typeof IF = "java.lang.String";
+%typeof COMMA = "java.lang.String";
+%typeof RBR = "java.lang.String";
+%typeof OR = "java.lang.String";
+%typeof SLASH = "java.lang.String";
+%typeof MINUSMINUS = "java.lang.String";
+%typeof COLON = "java.lang.String";
+%typeof EQ = "java.lang.String";
+%typeof GT = "java.lang.String";
+%typeof READ = "java.lang.String";
+%typeof ASSIGNMUL = "java.lang.String";
+%typeof STAR = "java.lang.String";
+%typeof IDENT = "java.lang.String";
+%typeof ASSIGNSUB = "java.lang.String";
+%typeof ASSIGNMOD = "java.lang.String";
+%typeof AND = "java.lang.String";
+%typeof GTE = "java.lang.String";
+%typeof WHILE = "java.lang.String";
+%typeof NEQ = "java.lang.String";
+%typeof EXCL = "java.lang.String";
+%typeof LTE = "java.lang.String";
+%typeof PLUS = "java.lang.String";
+%typeof StatementArray3 = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.parser.beaver.SymbolListImpl<yajco.example.imperative.model.statement.Statement>>";
+%typeof Write = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.statement.Write>";
+%typeof DoWhile = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.statement.DoWhile>";
+%typeof EmptyStatement = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.statement.EmptyStatement>";
+%typeof BinaryOperation = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.expression.BinaryOperation>";
+%typeof Function = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.function.Function>";
+%typeof Parameter = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.function.Parameter>";
+%typeof AssignmentGeneric = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.expression.assignment.AssignmentGeneric>";
+%typeof FunctionCall = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.function.FunctionCall>";
+%typeof WhileStatement = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.statement.WhileStatement>";
+%typeof ExpressionStatement = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.statement.ExpressionStatement>";
+%typeof FunctionArray1 = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.parser.beaver.SymbolListImpl<yajco.example.imperative.model.function.Function>>";
+%typeof Block = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.statement.Block>";
+%typeof ReturnFunction = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.function.ReturnFunction>";
+%typeof Variable = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.expression.Variable>";
+%typeof Statement = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.statement.Statement>";
+%typeof UnaryOperation = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.expression.UnaryOperation>";
+%typeof ParameterArray2 = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.parser.beaver.SymbolListImpl<yajco.example.imperative.model.function.Parameter>>";
+%typeof Condition = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.statement.Condition>";
+%typeof Program = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.Program>";
+%typeof Expression = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.expression.Expression>";
+%typeof ExpressionArray4 = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.parser.beaver.SymbolListImpl<yajco.example.imperative.model.expression.Expression>>";
+%typeof Read = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.statement.Read>";
+%typeof Number = "yajco.example.imperative.parser.beaver.SymbolWrapper<yajco.example.imperative.model.expression.Number>";
+
+%goal Program;
+
+Number
+	= VALUE.value	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.Number(java.lang.Integer.valueOf(value)), (Object)java.lang.Integer.valueOf(value))); :}
+	;
+
+Program
+	= FunctionArray1.functions Block.main	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.Program(functions.getWrappedObject().toArray(new yajco.example.imperative.model.function.Function[]{}), main.getWrappedObject()), (Object)functions.getWrappedObject().toArray(new yajco.example.imperative.model.function.Function[]{}), main.getWrappedObject())); :}
+	;
+
+UnaryOperation
+	= PLUS Expression.expression @ PREC_13_1	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.arithmetic.UnaryPlus(expression.getWrappedObject()), (Object)expression.getWrappedObject())); :}
+	| PLUSPLUS Expression.expression	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.assignment.PrefixIncrement(expression.getWrappedObject()), (Object)expression.getWrappedObject())); :}
+	| EXCL Expression.expression	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.conditional.Not(expression.getWrappedObject()), (Object)expression.getWrappedObject())); :}
+	| MINUS Expression.expression @ PREC_13_2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.arithmetic.UnaryMinus(expression.getWrappedObject()), (Object)expression.getWrappedObject())); :}
+	| MINUSMINUS Expression.expression	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.assignment.PrefixDecrement(expression.getWrappedObject()), (Object)expression.getWrappedObject())); :}
+	;
+
+Block
+	= LBR StatementArray3.statements RBR	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.statement.Block(statements.getWrappedObject().toArray(new yajco.example.imperative.model.statement.Statement[]{})), (Object)statements.getWrappedObject().toArray(new yajco.example.imperative.model.statement.Statement[]{}))); :}
+	;
+
+BinaryOperation
+	= Expression.expression1 PLUS Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.arithmetic.Add(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 MINUS Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.arithmetic.Sub(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| AssignmentGeneric.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Expression.expression1 LT Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.relational.LowerThan(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 GT Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.relational.GreaterThan(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 ASSIGN Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.assignment.Assignment(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 EQ Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.relational.Equal(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 NEQ Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.relational.NotEqual(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 STAR Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.arithmetic.Mul(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 SLASH Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.arithmetic.Div(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 GTE Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.relational.GreaterThanOrEqual(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 LTE Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.relational.LowerThanOrEqual(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 PERC Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.arithmetic.Mod(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 OR Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.conditional.Or(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 AND Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.conditional.And(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	;
+
+Expression
+	= LPAR Expression.val RPAR	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Number.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Variable.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Expression.expression1 QUESTION Expression.expression2 COLON Expression.expression3	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.conditional.Conditional(expression1.getWrappedObject(), expression2.getWrappedObject(), expression3.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject(), expression3.getWrappedObject())); :}
+	| BinaryOperation.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| FunctionCall.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| UnaryOperation.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	;
+
+ParameterArray2
+	= ParameterArray2.list COMMA Parameter.elem	{: list.getWrappedObject().add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list.getWrappedObject()); :}
+	| 	{: return (Symbol) new SymbolWrapper(new SymbolListImpl<yajco.example.imperative.model.function.Parameter>()); :}
+	| Parameter.elem	{: java.util.List<yajco.example.imperative.model.function.Parameter> list = null; list = new SymbolListImpl<yajco.example.imperative.model.function.Parameter>(); list.add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list); :}
+	;
+
+Statement
+	= Block.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| ReturnFunction.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| EmptyStatement.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| DoWhile.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Write.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| WhileStatement.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| ExpressionStatement.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Read.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Condition.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	;
+
+Parameter
+	= IDENT.ident	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.function.Parameter(ident), (Object)ident)); :}
+	;
+
+Write
+	= WRITE Expression.expression SEMICOLON	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.statement.Write(expression.getWrappedObject()), (Object)expression.getWrappedObject())); :}
+	;
+
+FunctionArray1
+	= FunctionArray1.list Function.elem	{: list.getWrappedObject().add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list.getWrappedObject()); :}
+	| 	{: return (Symbol) new SymbolWrapper(new SymbolListImpl<yajco.example.imperative.model.function.Function>()); :}
+	;
+
+WhileStatement
+	= WHILE LPAR Expression.expression RPAR Statement.statement	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.statement.WhileStatement(expression.getWrappedObject(), statement.getWrappedObject()), (Object)expression.getWrappedObject(), statement.getWrappedObject())); :}
+	;
+
+ExpressionArray4
+	= ExpressionArray4.list COMMA Expression.elem	{: list.getWrappedObject().add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list.getWrappedObject()); :}
+	| 	{: return (Symbol) new SymbolWrapper(new SymbolListImpl<yajco.example.imperative.model.expression.Expression>()); :}
+	| Expression.elem	{: java.util.List<yajco.example.imperative.model.expression.Expression> list = null; list = new SymbolListImpl<yajco.example.imperative.model.expression.Expression>(); list.add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list); :}
+	;
+
+ExpressionStatement
+	= Expression.expression SEMICOLON	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.statement.ExpressionStatement(expression.getWrappedObject()), (Object)expression.getWrappedObject())); :}
+	;
+
+Variable
+	= IDENT.ident	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.Variable(ident), (Object)ident)); :}
+	;
+
+EmptyStatement
+	= SEMICOLON	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.statement.EmptyStatement())); :}
+	;
+
+Read
+	= READ IDENT.ident SEMICOLON	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.statement.Read(ident), (Object)ident)); :}
+	;
+
+FunctionCall
+	= IDENT.ident LPAR ExpressionArray4.expressions RPAR	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.function.FunctionCall(ident, expressions.getWrappedObject().toArray(new yajco.example.imperative.model.expression.Expression[]{})), (Object)ident, expressions.getWrappedObject().toArray(new yajco.example.imperative.model.expression.Expression[]{}))); :}
+	;
+
+Condition
+	= IF LPAR Expression.expression RPAR Statement.trueStatement	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.statement.Condition(expression.getWrappedObject(), trueStatement.getWrappedObject()), (Object)expression.getWrappedObject(), trueStatement.getWrappedObject())); :}
+	| IF LPAR Expression.expression RPAR Statement.trueStatement ELSE Statement.falseStatement	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.statement.Condition(expression.getWrappedObject(), trueStatement.getWrappedObject(), falseStatement.getWrappedObject()), (Object)expression.getWrappedObject(), trueStatement.getWrappedObject(), falseStatement.getWrappedObject())); :}
+	;
+
+DoWhile
+	= DO Statement.statement WHILE LPAR Expression.expression RPAR SEMICOLON	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.statement.DoWhile(statement.getWrappedObject(), expression.getWrappedObject()), (Object)statement.getWrappedObject(), expression.getWrappedObject())); :}
+	;
+
+Function
+	= IDENT.ident LPAR ParameterArray2.parameters RPAR Block.body	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.function.Function(ident, parameters.getWrappedObject().toArray(new yajco.example.imperative.model.function.Parameter[]{}), body.getWrappedObject()), (Object)ident, parameters.getWrappedObject().toArray(new yajco.example.imperative.model.function.Parameter[]{}), body.getWrappedObject())); :}
+	;
+
+StatementArray3
+	= StatementArray3.list Statement.elem	{: list.getWrappedObject().add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list.getWrappedObject()); :}
+	| 	{: return (Symbol) new SymbolWrapper(new SymbolListImpl<yajco.example.imperative.model.statement.Statement>()); :}
+	;
+
+ReturnFunction
+	= RETURN Expression.expression SEMICOLON	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.function.ReturnFunction(expression.getWrappedObject()), (Object)expression.getWrappedObject())); :}
+	;
+
+AssignmentGeneric
+	= Expression.expression1 ASSIGNMOD Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.assignment.AssignmentMod(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 ASSIGNDIV Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.assignment.AssignmentDiv(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 ASSIGNMUL Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.assignment.AssignmentMul(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 ASSIGNSUB Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.assignment.AssignmentSub(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Expression.expression1 ASSIGNADD Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.imperative.model.expression.assignment.AssignmentAdd(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	;
+

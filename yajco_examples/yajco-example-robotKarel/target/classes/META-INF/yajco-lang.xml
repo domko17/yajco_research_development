@@ -1,0 +1,781 @@
+<yajco.model.Language>
+  <name>yajco.robot.karel.model</name>
+  <concepts>
+    <yajco.model.Concept>
+      <name>Program</name>
+      <abstractSyntax>
+        <yajco.model.Property>
+          <name>definitions</name>
+          <type class="yajco.model.type.ArrayType">
+            <componentType class="yajco.model.type.ReferenceType">
+              <concept>
+                <name>Definition</name>
+                <abstractSyntax>
+                  <yajco.model.Property>
+                    <name>ident</name>
+                    <type class="yajco.model.type.PrimitiveType">
+                      <primitiveTypeConst>STRING</primitiveTypeConst>
+                    </type>
+                    <patterns>
+                      <yajco.model.pattern.impl.Identifier>
+                        <unique></unique>
+                      </yajco.model.pattern.impl.Identifier>
+                    </patterns>
+                  </yajco.model.Property>
+                  <yajco.model.Property>
+                    <name>statements</name>
+                    <type class="yajco.model.type.ArrayType">
+                      <componentType class="yajco.model.type.ReferenceType">
+                        <concept>
+                          <name>Statement</name>
+                          <abstractSyntax/>
+                          <concreteSyntax/>
+                          <patterns/>
+                        </concept>
+                      </componentType>
+                    </type>
+                    <patterns/>
+                  </yajco.model.Property>
+                </abstractSyntax>
+                <concreteSyntax>
+                  <yajco.model.Notation>
+                    <parts>
+                      <yajco.model.TokenPart>
+                        <token>DEFINE</token>
+                      </yajco.model.TokenPart>
+                      <yajco.model.PropertyReferencePart>
+                        <property reference="../../../../../abstractSyntax/yajco.model.Property"/>
+                        <patterns/>
+                      </yajco.model.PropertyReferencePart>
+                      <yajco.model.TokenPart>
+                        <token>AS</token>
+                      </yajco.model.TokenPart>
+                      <yajco.model.PropertyReferencePart>
+                        <property reference="../../../../../abstractSyntax/yajco.model.Property[2]"/>
+                        <patterns>
+                          <yajco.model.pattern.impl.Range>
+                            <minOccurs>1</minOccurs>
+                            <maxOccurs>-1</maxOccurs>
+                          </yajco.model.pattern.impl.Range>
+                        </patterns>
+                      </yajco.model.PropertyReferencePart>
+                    </parts>
+                    <patterns/>
+                  </yajco.model.Notation>
+                </concreteSyntax>
+                <patterns/>
+              </concept>
+            </componentType>
+          </type>
+          <patterns/>
+        </yajco.model.Property>
+        <yajco.model.Property>
+          <name>statements</name>
+          <type class="yajco.model.type.ArrayType">
+            <componentType class="yajco.model.type.ReferenceType">
+              <concept reference="../../../../yajco.model.Property/type/componentType/concept/abstractSyntax/yajco.model.Property[2]/type/componentType/concept"/>
+            </componentType>
+          </type>
+          <patterns/>
+        </yajco.model.Property>
+      </abstractSyntax>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>BEGINNING-OF-PROGRAM</token>
+            </yajco.model.TokenPart>
+            <yajco.model.PropertyReferencePart>
+              <property reference="../../../../../abstractSyntax/yajco.model.Property"/>
+              <patterns/>
+            </yajco.model.PropertyReferencePart>
+            <yajco.model.TokenPart>
+              <token>BEGINNING-OF-EXECUTION</token>
+            </yajco.model.TokenPart>
+            <yajco.model.PropertyReferencePart>
+              <property reference="../../../../../abstractSyntax/yajco.model.Property[2]"/>
+              <patterns>
+                <yajco.model.pattern.impl.Range>
+                  <minOccurs>1</minOccurs>
+                  <maxOccurs>-1</maxOccurs>
+                </yajco.model.pattern.impl.Range>
+              </patterns>
+            </yajco.model.PropertyReferencePart>
+            <yajco.model.TokenPart>
+              <token>END-OF-EXECUTION</token>
+            </yajco.model.TokenPart>
+            <yajco.model.TokenPart>
+              <token>END-OF-PROGRAM</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept reference="../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept"/>
+    <yajco.model.Concept reference="../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept/abstractSyntax/yajco.model.Property[2]/type/componentType/concept"/>
+    <yajco.model.Concept>
+      <name>statement.Block</name>
+      <parent reference="../../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept/abstractSyntax/yajco.model.Property[2]/type/componentType/concept"/>
+      <abstractSyntax>
+        <yajco.model.Property>
+          <name>statements</name>
+          <type class="yajco.model.type.ArrayType">
+            <componentType class="yajco.model.type.ReferenceType">
+              <concept reference="../../../../../../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept/abstractSyntax/yajco.model.Property[2]/type/componentType/concept"/>
+            </componentType>
+          </type>
+          <patterns/>
+        </yajco.model.Property>
+      </abstractSyntax>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>BEGIN</token>
+            </yajco.model.TokenPart>
+            <yajco.model.PropertyReferencePart>
+              <property reference="../../../../../abstractSyntax/yajco.model.Property"/>
+              <patterns/>
+            </yajco.model.PropertyReferencePart>
+            <yajco.model.TokenPart>
+              <token>END</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>statement.Loop</name>
+      <parent reference="../../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept/abstractSyntax/yajco.model.Property[2]/type/componentType/concept"/>
+      <abstractSyntax>
+        <yajco.model.Property>
+          <name>condition</name>
+          <type class="yajco.model.type.ReferenceType">
+            <concept>
+              <name>Condition</name>
+              <abstractSyntax/>
+              <concreteSyntax/>
+              <patterns/>
+            </concept>
+          </type>
+          <patterns/>
+        </yajco.model.Property>
+        <yajco.model.Property>
+          <name>statement</name>
+          <type class="yajco.model.type.ReferenceType">
+            <concept reference="../../../../../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept/abstractSyntax/yajco.model.Property[2]/type/componentType/concept"/>
+          </type>
+          <patterns/>
+        </yajco.model.Property>
+      </abstractSyntax>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>WHILE</token>
+            </yajco.model.TokenPart>
+            <yajco.model.PropertyReferencePart>
+              <property reference="../../../../../abstractSyntax/yajco.model.Property"/>
+              <patterns/>
+            </yajco.model.PropertyReferencePart>
+            <yajco.model.TokenPart>
+              <token>DO</token>
+            </yajco.model.TokenPart>
+            <yajco.model.PropertyReferencePart>
+              <property reference="../../../../../abstractSyntax/yajco.model.Property[2]"/>
+              <patterns/>
+            </yajco.model.PropertyReferencePart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept reference="../yajco.model.Concept[5]/abstractSyntax/yajco.model.Property/type/concept"/>
+    <yajco.model.Concept>
+      <name>condition.beeper.NextToABeeper</name>
+      <parent reference="../../yajco.model.Concept[5]/abstractSyntax/yajco.model.Property/type/concept"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>NEXT-TO-A-BEEPER</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.obstacle.Obstacle</name>
+      <parent reference="../../yajco.model.Concept[5]/abstractSyntax/yajco.model.Property/type/concept"/>
+      <abstractSyntax/>
+      <concreteSyntax/>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.obstacle.BackIsBlocked</name>
+      <parent reference="../../yajco.model.Concept[8]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>BACK-IS-BLOCKED</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.obstacle.FrontIsBlocked</name>
+      <parent reference="../../yajco.model.Concept[8]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>FRONT-IS-BLOCKED</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.obstacle.RightIsClear</name>
+      <parent reference="../../yajco.model.Concept[8]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>RIGHT-IS-CLEAR</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.obstacle.BackIsClear</name>
+      <parent reference="../../yajco.model.Concept[8]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>BACK-IS-CLEAR</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.obstacle.FrontIsClear</name>
+      <parent reference="../../yajco.model.Concept[8]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>FRONT-IS-CLEAR</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.obstacle.LeftIsBlocked</name>
+      <parent reference="../../yajco.model.Concept[8]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>LEFT-IS-BLOCKED</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.obstacle.RightIsBlocked</name>
+      <parent reference="../../yajco.model.Concept[8]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>RIGHT-IS-BLOCKED</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.obstacle.LeftIsClear</name>
+      <parent reference="../../yajco.model.Concept[8]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>LEFT-IS-CLEAR</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.beeper.AnyBeepersInBeeperBag</name>
+      <parent reference="../../yajco.model.Concept[5]/abstractSyntax/yajco.model.Property/type/concept"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>ANY-BEEPERS-IN-BEEPER-BAG</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.facing.Facing</name>
+      <parent reference="../../yajco.model.Concept[5]/abstractSyntax/yajco.model.Property/type/concept"/>
+      <abstractSyntax/>
+      <concreteSyntax/>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.facing.NotFacingEast</name>
+      <parent reference="../../yajco.model.Concept[18]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>NOT-FACING-EAST</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.facing.NotFacingNorth</name>
+      <parent reference="../../yajco.model.Concept[18]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>NOT-FACING-NORTH</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.facing.FacingSouth</name>
+      <parent reference="../../yajco.model.Concept[18]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>FACING-SOUTH</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.facing.FacingNorth</name>
+      <parent reference="../../yajco.model.Concept[18]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>FACING-NORTH</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.facing.NotFacingWest</name>
+      <parent reference="../../yajco.model.Concept[18]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>NOT-FACING-WEST</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.facing.FacingEast</name>
+      <parent reference="../../yajco.model.Concept[18]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>FACING-EAST</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.facing.NotFacingSouth</name>
+      <parent reference="../../yajco.model.Concept[18]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>NOT-FACING-SOUTH</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.facing.FacingWest</name>
+      <parent reference="../../yajco.model.Concept[18]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>FACING-WEST</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.beeper.NoBeepersInBeeperBag</name>
+      <parent reference="../../yajco.model.Concept[5]/abstractSyntax/yajco.model.Property/type/concept"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>NO-BEEPERS-IN-BEEPER-BAG</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>condition.beeper.NotNextToABeeper</name>
+      <parent reference="../../yajco.model.Concept[5]/abstractSyntax/yajco.model.Property/type/concept"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>NOT-NEXT-TO-A-BEEPER</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>statement.Iteration</name>
+      <parent reference="../../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept/abstractSyntax/yajco.model.Property[2]/type/componentType/concept"/>
+      <abstractSyntax>
+        <yajco.model.Property>
+          <name>value</name>
+          <type class="yajco.model.type.PrimitiveType">
+            <primitiveTypeConst>INTEGER</primitiveTypeConst>
+          </type>
+          <patterns/>
+        </yajco.model.Property>
+        <yajco.model.Property>
+          <name>statement</name>
+          <type class="yajco.model.type.ReferenceType">
+            <concept reference="../../../../../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept/abstractSyntax/yajco.model.Property[2]/type/componentType/concept"/>
+          </type>
+          <patterns/>
+        </yajco.model.Property>
+      </abstractSyntax>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>ITERATE</token>
+            </yajco.model.TokenPart>
+            <yajco.model.PropertyReferencePart>
+              <property reference="../../../../../abstractSyntax/yajco.model.Property"/>
+              <patterns/>
+            </yajco.model.PropertyReferencePart>
+            <yajco.model.TokenPart>
+              <token>TIMES</token>
+            </yajco.model.TokenPart>
+            <yajco.model.PropertyReferencePart>
+              <property reference="../../../../../abstractSyntax/yajco.model.Property[2]"/>
+              <patterns/>
+            </yajco.model.PropertyReferencePart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>Instruction</name>
+      <parent reference="../../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept/abstractSyntax/yajco.model.Property[2]/type/componentType/concept"/>
+      <abstractSyntax/>
+      <concreteSyntax/>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>instruction.PickBeeper</name>
+      <parent reference="../../yajco.model.Concept[30]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>PICKBEEPER</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>instruction.TurnLeft</name>
+      <parent reference="../../yajco.model.Concept[30]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>TURNLEFT</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>instruction.Call</name>
+      <parent reference="../../yajco.model.Concept[30]"/>
+      <abstractSyntax>
+        <yajco.model.Property>
+          <name>definition</name>
+          <type class="yajco.model.type.ReferenceType">
+            <concept reference="../../../../../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept"/>
+          </type>
+          <patterns/>
+        </yajco.model.Property>
+      </abstractSyntax>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.LocalVariablePart>
+              <name>ident</name>
+              <type class="yajco.model.type.PrimitiveType">
+                <primitiveTypeConst reference="../../../../../../../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept/abstractSyntax/yajco.model.Property/type/primitiveTypeConst"/>
+              </type>
+              <patterns>
+                <yajco.model.pattern.impl.References>
+                  <concept reference="../../../../../../../../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept"/>
+                  <property reference="../../../../../../../abstractSyntax/yajco.model.Property"/>
+                </yajco.model.pattern.impl.References>
+              </patterns>
+            </yajco.model.LocalVariablePart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>instruction.Move</name>
+      <parent reference="../../yajco.model.Concept[30]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>MOVE</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>instruction.TurnOff</name>
+      <parent reference="../../yajco.model.Concept[30]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>TURNOFF</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>instruction.PutBeeper</name>
+      <parent reference="../../yajco.model.Concept[30]"/>
+      <abstractSyntax/>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>PUTBEEPER</token>
+            </yajco.model.TokenPart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+    <yajco.model.Concept>
+      <name>statement.Conditional</name>
+      <parent reference="../../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept/abstractSyntax/yajco.model.Property[2]/type/componentType/concept"/>
+      <abstractSyntax>
+        <yajco.model.Property>
+          <name>condition</name>
+          <type class="yajco.model.type.ReferenceType">
+            <concept reference="../../../../../yajco.model.Concept[5]/abstractSyntax/yajco.model.Property/type/concept"/>
+          </type>
+          <patterns/>
+        </yajco.model.Property>
+        <yajco.model.Property>
+          <name>statement</name>
+          <type class="yajco.model.type.ReferenceType">
+            <concept reference="../../../../../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept/abstractSyntax/yajco.model.Property[2]/type/componentType/concept"/>
+          </type>
+          <patterns/>
+        </yajco.model.Property>
+        <yajco.model.Property>
+          <name>elseStatement</name>
+          <type class="yajco.model.type.ReferenceType">
+            <concept reference="../../../../../yajco.model.Concept/abstractSyntax/yajco.model.Property/type/componentType/concept/abstractSyntax/yajco.model.Property[2]/type/componentType/concept"/>
+          </type>
+          <patterns/>
+        </yajco.model.Property>
+      </abstractSyntax>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>IF</token>
+            </yajco.model.TokenPart>
+            <yajco.model.PropertyReferencePart>
+              <property reference="../../../../../abstractSyntax/yajco.model.Property"/>
+              <patterns/>
+            </yajco.model.PropertyReferencePart>
+            <yajco.model.TokenPart>
+              <token>THEN</token>
+            </yajco.model.TokenPart>
+            <yajco.model.PropertyReferencePart>
+              <property reference="../../../../../abstractSyntax/yajco.model.Property[2]"/>
+              <patterns/>
+            </yajco.model.PropertyReferencePart>
+            <yajco.model.TokenPart>
+              <token>ELSE</token>
+            </yajco.model.TokenPart>
+            <yajco.model.PropertyReferencePart>
+              <property reference="../../../../../abstractSyntax/yajco.model.Property[3]"/>
+              <patterns/>
+            </yajco.model.PropertyReferencePart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+  </concepts>
+  <tokens>
+    <yajco.model.TokenDef>
+      <name>IDENT</name>
+      <regexp>[a-zA-Z]+</regexp>
+    </yajco.model.TokenDef>
+    <yajco.model.TokenDef>
+      <name>VALUE</name>
+      <regexp>[0-9]+</regexp>
+    </yajco.model.TokenDef>
+  </tokens>
+  <skips>
+    <yajco.model.SkipDef>
+      <regexp> </regexp>
+    </yajco.model.SkipDef>
+    <yajco.model.SkipDef>
+      <regexp>\t</regexp>
+    </yajco.model.SkipDef>
+    <yajco.model.SkipDef>
+      <regexp>\n</regexp>
+    </yajco.model.SkipDef>
+    <yajco.model.SkipDef>
+      <regexp>\r</regexp>
+    </yajco.model.SkipDef>
+  </skips>
+  <settings>
+    <property name="yajco.mainNode" value="yajco.robot.karel.model.Program"/>
+    <property name="yajco.generator.classgen.ClassGenerator" value="false"/>
+    <property name="yajco.className" value="yajco.robot.karel.parser.Parser"/>
+  </settings>
+</yajco.model.Language>

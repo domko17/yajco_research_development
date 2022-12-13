@@ -1,0 +1,85 @@
+%package "yajco.example.json.parser.beaver";
+%class "JsonParser";
+%import "yajco.example.json.parser.beaver.SymbolListImpl";
+%import "yajco.example.json.parser.beaver.SymbolWrapper";
+
+%terminals KONPOLE, SYMBOL_44, CISLO, NULL, KONOBJ, ZACPOLE, VALUE, DVOJBODKA, ZACOBJ, BOOLEAN;
+
+%typeof KONPOLE = "java.lang.String";
+%typeof CISLO = "java.lang.String";
+%typeof NULL = "java.lang.String";
+%typeof KONOBJ = "java.lang.String";
+%typeof ZACPOLE = "java.lang.String";
+%typeof VALUE = "java.lang.String";
+%typeof DVOJBODKA = "java.lang.String";
+%typeof ZACOBJ = "java.lang.String";
+%typeof BOOLEAN = "java.lang.String";
+%typeof NodeArray2 = "yajco.example.json.parser.beaver.SymbolWrapper<yajco.example.json.parser.beaver.SymbolListImpl<yajco.example.json.model.Node>>";
+%typeof Members = "yajco.example.json.parser.beaver.SymbolWrapper<yajco.example.json.model.Members>";
+%typeof JsonFile = "yajco.example.json.parser.beaver.SymbolWrapper<yajco.example.json.model.JsonFile>";
+%typeof Boolean = "yajco.example.json.parser.beaver.SymbolWrapper<yajco.example.json.model.Boolean>";
+%typeof Array = "yajco.example.json.parser.beaver.SymbolWrapper<yajco.example.json.model.Array>";
+%typeof NodeString = "yajco.example.json.parser.beaver.SymbolWrapper<yajco.example.json.model.NodeString>";
+%typeof Number = "yajco.example.json.parser.beaver.SymbolWrapper<yajco.example.json.model.Number>";
+%typeof Node = "yajco.example.json.parser.beaver.SymbolWrapper<yajco.example.json.model.Node>";
+%typeof Object = "yajco.example.json.parser.beaver.SymbolWrapper<yajco.example.json.model.Object>";
+%typeof Null = "yajco.example.json.parser.beaver.SymbolWrapper<yajco.example.json.model.Null>";
+%typeof MembersArray1 = "yajco.example.json.parser.beaver.SymbolWrapper<yajco.example.json.parser.beaver.SymbolListImpl<yajco.example.json.model.Members>>";
+
+%goal JsonFile;
+
+Array
+	= ZACPOLE KONPOLE	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.json.model.Array())); :}
+	| ZACPOLE NodeArray2.node KONPOLE	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.json.model.Array(new java.util.ArrayList<yajco.example.json.model.Node>(node.getWrappedObject())), (Object)new java.util.ArrayList<yajco.example.json.model.Node>(node.getWrappedObject()))); :}
+	;
+
+JsonFile
+	= Object.obj	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.json.model.JsonFile(obj.getWrappedObject()), (Object)obj.getWrappedObject())); :}
+	;
+
+NodeString
+	= VALUE.retazec	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.json.model.NodeString(retazec), (Object)retazec)); :}
+	;
+
+Null
+	= NULL.nula	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.json.model.Null(nula), (Object)nula)); :}
+	;
+
+MembersArray1
+	= MembersArray1.list SYMBOL_44 Members.elem	{: list.getWrappedObject().add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list.getWrappedObject()); :}
+	| 	{: return (Symbol) new SymbolWrapper(new SymbolListImpl<yajco.example.json.model.Members>()); :}
+	| Members.elem	{: java.util.List<yajco.example.json.model.Members> list = null; list = new SymbolListImpl<yajco.example.json.model.Members>(); list.add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list); :}
+	;
+
+Node
+	= Object.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Number.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Null.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| NodeString.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Array.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Boolean.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	;
+
+Members
+	= VALUE.string DVOJBODKA Node.value	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.json.model.Members(string, value.getWrappedObject()), (Object)string, value.getWrappedObject())); :}
+	;
+
+NodeArray2
+	= NodeArray2.list SYMBOL_44 Node.elem	{: list.getWrappedObject().add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list.getWrappedObject()); :}
+	| 	{: return (Symbol) new SymbolWrapper(new SymbolListImpl<yajco.example.json.model.Node>()); :}
+	| Node.elem	{: java.util.List<yajco.example.json.model.Node> list = null; list = new SymbolListImpl<yajco.example.json.model.Node>(); list.add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list); :}
+	;
+
+Boolean
+	= BOOLEAN.bo	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.json.model.Boolean(java.lang.Boolean.valueOf(bo)), (Object)java.lang.Boolean.valueOf(bo))); :}
+	;
+
+Number
+	= CISLO.cislo	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.json.model.Number(cislo), (Object)cislo)); :}
+	;
+
+Object
+	= ZACOBJ KONOBJ	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.json.model.Object())); :}
+	| ZACOBJ MembersArray1.men KONOBJ	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.json.model.Object(new java.util.ArrayList<yajco.example.json.model.Members>(men.getWrappedObject())), (Object)new java.util.ArrayList<yajco.example.json.model.Members>(men.getWrappedObject()))); :}
+	;
+

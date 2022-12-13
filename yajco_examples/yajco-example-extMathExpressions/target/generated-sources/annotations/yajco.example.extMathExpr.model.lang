@@ -1,0 +1,82 @@
+language yajco.example.extMathExpr.model
+
+tokens
+   PLUS = "\+"
+   MINUS = "-"
+   STAR = "\*"
+   SLASH = "/"
+   PERC = "%"
+   EXCL = "!"
+   POWER = "\^"
+   TILDE = "~"
+   QUESTION = "\?"
+   COLON = ":"
+   EQ = "=="
+   NEQ = "!="
+   ASS = "="
+   LPAR = "[(]"
+   RPAR = "[)]"
+   VALUE = "([0-9]+)"
+
+skips
+   " "
+   "\t"
+   "\n"
+   "\r"
+
+concept Expression {Parentheses}
+
+concept BinaryOperation : Expression
+
+concept Power : BinaryOperation {Operator(priority = 2)}
+    AS: expression1 : Expression, expression2 : Expression
+    CS: expression1 "POWER" expression2 
+
+concept Sub : BinaryOperation {Operator(priority = 1)}
+    AS: expression1 : Expression, expression2 : Expression
+    CS: expression1 "MINUS" expression2 
+
+concept Mod : BinaryOperation {Operator(priority = 2)}
+    AS: expression1 : Expression, expression2 : Expression
+    CS: expression1 "PERC" expression2 
+
+concept Mul : BinaryOperation {Operator(priority = 2)}
+    AS: expression1 : Expression, expression2 : Expression
+    CS: expression1 "STAR" expression2 
+
+concept Div : BinaryOperation {Operator(priority = 2)}
+    AS: expression1 : Expression, expression2 : Expression
+    CS: expression1 "SLASH" expression2 
+
+concept Add : BinaryOperation {Operator(priority = 1)}
+    AS: expression1 : Expression, expression2 : Expression
+    CS: expression1 "PLUS" expression2 
+
+concept UnaryOperation : Expression
+
+concept UnaryMinus : UnaryOperation {Operator(priority = 3)}
+    AS: expression : Expression
+    CS: "MINUS" expression 
+
+concept Factorial : UnaryOperation {Operator(priority = 4)}
+    AS: expression : Expression
+    CS: expression "EXCL" 
+
+concept UnaryPlus : UnaryOperation {Operator(priority = 3)}
+    AS: expression : Expression
+    CS: "PLUS" expression 
+
+concept Number : Expression
+    AS: value : int
+    CS: value 
+
+concept Conditional : Expression {Operator(priority = 0, associativity = RIGHT)}
+    AS: expression1 : Expression, expression2 : Expression, expression3 : Expression
+    CS: expression1 "QUESTION" expression2 "COLON" expression3 
+
+settings
+   yajco.generateTools = "all"
+   yajco.className = "yajco.example.extMathExpr.parser.ExpressionParser"
+   yajco.mainNode = "Expression"
+   yajco.generator.classgen.ClassGenerator = "false"
+

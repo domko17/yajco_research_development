@@ -1,0 +1,47 @@
+<yajco.model.Language>
+  <name>mylang</name>
+  <concepts>
+    <yajco.model.Concept>
+      <name>SimpleIdentifier</name>
+      <abstractSyntax>
+        <yajco.model.Property>
+          <name>ident</name>
+          <type class="yajco.model.type.PrimitiveType">
+            <primitiveTypeConst>STRING</primitiveTypeConst>
+          </type>
+          <patterns/>
+        </yajco.model.Property>
+      </abstractSyntax>
+      <concreteSyntax>
+        <yajco.model.Notation>
+          <parts>
+            <yajco.model.TokenPart>
+              <token>id</token>
+            </yajco.model.TokenPart>
+            <yajco.model.PropertyReferencePart>
+              <property reference="../../../../../abstractSyntax/yajco.model.Property"/>
+              <patterns/>
+            </yajco.model.PropertyReferencePart>
+          </parts>
+          <patterns/>
+        </yajco.model.Notation>
+      </concreteSyntax>
+      <patterns/>
+    </yajco.model.Concept>
+  </concepts>
+  <tokens>
+    <yajco.model.TokenDef>
+      <name>ident</name>
+      <regexp>[a-z]+</regexp>
+    </yajco.model.TokenDef>
+  </tokens>
+  <skips>
+    <yajco.model.SkipDef>
+      <regexp>\s</regexp>
+    </yajco.model.SkipDef>
+  </skips>
+  <settings>
+    <property name="yajco.generator.classgen.ClassGenerator" value="false"/>
+    <property name="yajco.mainNode" value="mylang.SimpleIdentifier"/>
+  </settings>
+</yajco.model.Language>

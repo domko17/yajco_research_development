@@ -1,0 +1,4 @@
+Expression ::= (Number | (<(> Expression1 <)>))
+Expression1 ::= (Expression2 (((<PLUS> Expression2) | (<MINUS> Expression2)))*)
+Expression2 ::= (Expression (((<SLASH> Expression) | (<STAR> Expression)))*)
+Number ::= (<VALUE> | <VALUE>)

@@ -1,0 +1,55 @@
+%package "yajco.example.desk.parser.beaver";
+%class "DeskParser";
+%import "yajco.example.desk.parser.beaver.SymbolListImpl";
+%import "yajco.example.desk.parser.beaver.SymbolWrapper";
+
+%terminals SYMBOL_41, SYMBOL_44, SYMBOL_43, SYMBOL_40, SYMBOLWHERE, SYMBOL_61, VALUE, SYMBOLPRINT, NAME;
+
+%left SYMBOL_40, SYMBOL_41;
+%left SYMBOL_43;
+
+%typeof VALUE = "java.lang.String";
+%typeof NAME = "java.lang.String";
+%typeof Program = "yajco.example.desk.parser.beaver.SymbolWrapper<yajco.example.desk.model.Program>";
+%typeof ConstantArray1 = "yajco.example.desk.parser.beaver.SymbolWrapper<yajco.example.desk.parser.beaver.SymbolListImpl<yajco.example.desk.model.Constant>>";
+%typeof Factor = "yajco.example.desk.parser.beaver.SymbolWrapper<yajco.example.desk.model.Factor>";
+%typeof Number = "yajco.example.desk.parser.beaver.SymbolWrapper<yajco.example.desk.model.Number>";
+%typeof Expression = "yajco.example.desk.parser.beaver.SymbolWrapper<yajco.example.desk.model.Expression>";
+%typeof Constant = "yajco.example.desk.parser.beaver.SymbolWrapper<yajco.example.desk.model.Constant>";
+%typeof ConstUsage = "yajco.example.desk.parser.beaver.SymbolWrapper<yajco.example.desk.model.ConstUsage>";
+
+%goal Program;
+
+Expression
+	= SYMBOL_40 Expression.val SYMBOL_41	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| Expression.expression1 SYMBOL_43 Expression.expression2	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.desk.model.Add(expression1.getWrappedObject(), expression2.getWrappedObject()), (Object)expression1.getWrappedObject(), expression2.getWrappedObject())); :}
+	| Factor.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	;
+
+Factor
+	= Number.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	| ConstUsage.val	{: return (Symbol) new SymbolWrapper(val.getWrappedObject()); :}
+	;
+
+Number
+	= VALUE.value	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.desk.model.Number(java.lang.Integer.valueOf(value)), (Object)java.lang.Integer.valueOf(value))); :}
+	;
+
+ConstantArray1
+	= ConstantArray1.list SYMBOL_44 Constant.elem	{: list.getWrappedObject().add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list.getWrappedObject()); :}
+	| Constant.elem	{: java.util.List<yajco.example.desk.model.Constant> list = null; list = new SymbolListImpl<yajco.example.desk.model.Constant>(); list.add(elem.getWrappedObject()); return (Symbol) new SymbolWrapper(list); :}
+	;
+
+Constant
+	= NAME.name SYMBOL_61 Number.number	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.desk.model.Constant(name, number.getWrappedObject()), (Object)name, number.getWrappedObject())); :}
+	;
+
+ConstUsage
+	= NAME.name	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.desk.model.ConstUsage(name), (Object)name)); :}
+	;
+
+Program
+	= SYMBOLPRINT Expression.expression	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.desk.model.Program(expression.getWrappedObject()), (Object)expression.getWrappedObject())); :}
+	| SYMBOLPRINT Expression.expression SYMBOLWHERE ConstantArray1.constants	{: return (Symbol) new SymbolWrapper(yajco.ReferenceResolver.getInstance().register(new yajco.example.desk.model.Program(expression.getWrappedObject(), constants.getWrappedObject().toArray(new yajco.example.desk.model.Constant[]{})), (Object)expression.getWrappedObject(), constants.getWrappedObject().toArray(new yajco.example.desk.model.Constant[]{}))); :}
+	;
+
